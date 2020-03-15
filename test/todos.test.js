@@ -1,5 +1,6 @@
 const app = require('../server');
 const request = require('supertest');
+const assert = require('assert');
 
 describe('API Tests', () => {
   let task = {
@@ -12,8 +13,7 @@ describe('API Tests', () => {
         .post('/tasks')
         .send(task)
         .end(function(err, res) {
-          expect(res.statusCode).toBe(200);
-          expect(res.body.name).toBe('Buy milk');
+          assert.equal(res.statusCode, 200);
           task = res.body;
           done();
         });
@@ -25,7 +25,7 @@ describe('API Tests', () => {
       request(app)
         .get('/tasks')
         .end(function(err, res) {
-          expect(res.statusCode).toBe(200);
+          assert.equal(res.statusCode, 200)
           done();
         });
     });
@@ -35,8 +35,8 @@ describe('API Tests', () => {
       request(app)
         .get('/tasks/' + task._id)
         .end(function(err, res) {
-          expect(res.statusCode).toBe(200);
-          expect(res.body.name).toEqual('Buy milk');
+          assert.equal(res.statusCode, 200)
+          assert.equal(res.body.name, 'Buy milk')
           done();
         });
     });
@@ -49,8 +49,8 @@ describe('API Tests', () => {
         .put('/tasks/' + task._id)
         .send(task)
         .end(function(err, res) {
-          expect(res.body.name).toEqual('New Task');
-          expect(res.statusCode).toBe(200);
+          assert.equal(res.statusCode, 200)
+          assert.equal(res.body.name, 'New Task')
           done();
         });
     });
@@ -60,8 +60,8 @@ describe('API Tests', () => {
       request(app)
         .delete('/tasks/' + task._id)
         .end(function(err, res) {
-          expect(res.statusCode).toBe(200);
-          expect(res.body.message).toEqual('Task successfully deleted');
+          assert.equal(res.statusCode, 200)
+          assert.equal(res.body.message, 'Task successfully deleted')
           done();
         });
     });
