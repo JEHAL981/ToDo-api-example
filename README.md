@@ -14,6 +14,7 @@ steps below.
 * Supertest
 * JEST
 * Express
+* Artillery.io
 
 
 
@@ -27,6 +28,7 @@ To install the test suite locally, including the above npm dependencies:
 
 ### Local
 
-To run the tests locally against the todo api:
+To run the api and load tests locally against the todo api:
 
 1. Run `npm run test`
+2. Run `npm run test:load
