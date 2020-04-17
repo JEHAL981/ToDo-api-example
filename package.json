@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest todos.test.js --forceExit",
+    "test:api": "jest todos.test.js --forceExit",
+    "test:load": "artillery run ./test/load-testing/*.yml",
     "start": "nodemon server.js"
   },
   "devDependencies": {
+    "artillery": "^1.6.0",
     "assert": "^2.0.0",
     "body-parser": "^1.19.0",
     "express": "^4.14.0",

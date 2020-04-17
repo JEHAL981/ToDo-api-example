@@ -1,0 +1,19 @@
+config:
+  target: 'http://localhost:4100'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+scenarios:
+  - flow:
+      - get:
+          url: "/tasks"
+          capture:
+            json: "$.name"
+            as: "name"
+      - loop:
+        - get:
+            url: "/tasks"
+            capture:
+              json: "$.name"
+              as: "name"
+        count: 100
